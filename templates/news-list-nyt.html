@@ -1,0 +1,9 @@
+<ul class="newsList">
+	<% _.each( news, function(newsItem) { %>
+		<li class="item">
+			<h3 class="itemHeader"><a href="<%= newsItem.get('url') %>"><%= newsItem.get('title')  %></a></h3>
+			<date class="pubDate"><%= newsEater.niceDate(newsItem.get('updated_date')) %></date>
+			<article class="description"><%= newsItem.get('abstract') %></article>
+		</li>
+	<% }); %>
+</ul>
