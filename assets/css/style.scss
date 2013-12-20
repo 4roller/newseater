@@ -21,17 +21,20 @@ html { @include gradient(#efefef, #efefef);  }
 body { margin: 0 0 30px 0; padding:0 10px; font-family: $font;}
 
 h1 {
-	font-family: 'Titillium Web', sans-serif; font-weight:800; margin:0; text-shadow: 1px 2px 2px #999; font-size:200%;
+	font-family: 'Titillium Web', sans-serif; font-weight:800; margin:0; text-shadow: 1px 2px 2px #999; font-size:200%; padding-top:5px;
 	a { text-decoration: none; color: #000;}
+	#showBodyToggle { cursor:pointer; }
 }
+
+
 
 hr { clear: left;padding:0; margin:5px 0 10px 0; border-top: solid 1px #aaa ;}
 
-#nav { float:left;
+#nav { float:left; position:relative;
 	ul {margin:0; padding:0;}
 	li { list-style: none; display:inline-block; }
 	.newsSources { 
-		float:left; clear:right; margin-bottom:10px;
+		float:left; clear:right; margin-bottom:10px; width:200%;
 		li { position:relative; cursor:pointer; float:left; padding:5px 10px 0px 0;}
 		.navSource { opacity: 0.3; -webkit-transition: all .1s ease-in-out; -webkit-transform-origin: center center; border:1px solid transparent;
 			&:hover { opacity:1;}
@@ -39,7 +42,7 @@ hr { clear: left;padding:0; margin:5px 0 10px 0; border-top: solid 1px #aaa ;}
 		}
 	}
 	.categories { 
-		display:block; clear:both;display:none; margin:10px 0 0 0;
+		display:block; clear:both;display:none; margin:10px 0 0 0; width: 300%;
 		li { 
 			border-right: 1px solid #999; margin: 0 10px 10px 0; 
 			&:last-child { border-right: 0;}
@@ -51,18 +54,28 @@ hr { clear: left;padding:0; margin:5px 0 10px 0; border-top: solid 1px #aaa ;}
 			}
 		}
 	}
+	.categories.shown {display:block;}
 }
 
 .page{ clear:left; } 
 #back2Top { margin: 10px auto 0 auto; position:relative; display:inline-block; cursor:pointer;}
 
-.newsList { padding:0; margin:0; position:relative;}
+.newsList { padding:0; margin:0; position:relative;padding-right: 20px;
+	.item .description { display:none; }
+}
+.newsList.showAll {
+	.item .description { display:block; }
+}		
 	.item:first-child {border-top:0; }
-	.item { list-style: none; margin: 0 0 0px 0; padding:8px 8px 8px 0; border-top:1px solid #efefef; border-bottom:1px solid #aaa; position:relative; min-height: 75px;}
+	.item { list-style: none; margin: 0 0 0px 0; padding:8px 8px 8px 0; border-top:1px solid #efefef; 
+			border-bottom:1px solid #aaa; position:relative; 
+	}
 		.itemHeader { margin: 0; font-size:120%; padding:0; line-height: 120%; text-shadow: 1px 2px 2px #bbb;}
 		.itemHeader a {  font-family:$sans; font-weight:normal; color: #05a; text-decoration: none;}
 		.itemHeader a:hover { text-decoration: none; color:#0099ff;}
 		.imageAnchor { float:left;}
 		.itemImage { margin: 0 10px 0 0; float:left;}
 		.pubDate { position:relative; display:inline-block; margin: 5px 0 5px 0; font-size:80%; font-family: $sans;}
-		.description { font-size:90%; font-family: $font; font-size:100%; line-height:120%; color: #000;}
+		.description { font-size:90%; font-family: $font; font-size:100%; line-height:120%; color: #000; }
+
+

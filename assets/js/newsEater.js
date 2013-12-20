@@ -1,6 +1,10 @@
 var newsEater = (function(){
 	var curTimestamp = Math.round((new Date()).getTime()) ; 
 	return {
+		init: function() {
+			newsEater.addListeners();
+
+		},
 		niceDate : function(dateString) {
 			var output;
 			var unixtime = Date.parse( dateString );
@@ -23,17 +27,55 @@ var newsEater = (function(){
 					output = dateString;
 				}
 			}
+			output  = dateString;
 			return output;
 		},
 		addListeners: function() {
-			$('#back2Top').click(function() {
-				window.scrollTo(0,0);
-			});
+			document.querySelector('#back2Top').addEventListener('click', function() { window.scrollTo(0,0); });
+			document.querySelector('#showBodyToggle').addEventListener('click', function() { newsEater.showBodyToggle(); });
+			//$(document).on('keyup', function(e){ newsEater.keys(e); } );
+			//$('body').on('touchstart', function(e){ newsEater.handleTouchStart(e); } );
+			//$('body').on('touchmove', function(e){ newsEater.handleTouchMove(e); } );
+			//$('body').on('touchend', function(e){ newsEater.handleTouchEnd(e); } );
+		},
+		showBodyToggle: function() {
+			document.querySelector('.newsList').classList.toggle('showAll');
+		},
+		keys: function(e) {
+			//console.log(e.which);
+			switch(e.which) {
+			}
+		},
+		onTouchStart:function(e) {
+			//e.preventDefault();
+			//console.log(e.originalEvent);
+			startx = e.originalEvent.changedTouches[0].screenX;
+			starty = e.originalEvent.changedTouches[0].screenY;
+			ts = e.originalEvent.timeStamp;
+			//alert("(" + startx + "," + starty + ")", ts);
+		},
+		onTouchEnd:function(e) {
+			//e.preventDefault();
+			//console.log(e.originalEvent);
+			startx = e.originalEvent.changedTouches[0].screenX;
+			starty = e.originalEvent.changedTouches[0].screenY;
+			ts = e.originalEvent.timeStamp;
+			//alert("(" + startx + "," + starty + ")", ts);
+
+		},
+		handleTouchMove:function(e) {
+			var startX,startY,startTime, endX,endY,endTime;
+
+			document.addListeners('touchstart', newsEater.onTouchStart(), false);
+
+			//e.preventDefault();
+			console.log( e.originalEvent.changedTouches[0].screenX );
+
 		}
+
 	}
 })();
 
-$(document).ready(function() {
-	newsEater.addListeners();
-});
+newsEater.init();
+
 
